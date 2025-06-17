@@ -1,15 +1,21 @@
-export default function HashTagList() {
+type HashTagListProps = {
+  companyList: string[];
+  onSelectCompany: (tag: string) => void;
+};
+
+export default function HashTagList({
+  companyList,
+  onSelectCompany,
+}: HashTagListProps) {
   return (
     <ul className='hashtags'>
-      <li>
-        <button>bytegrad</button>
-      </li>
-      <li>
-        <button>matesklubas</button>
-      </li>
-      <li>
-        <button>matesklubas</button>
-      </li>
+      {companyList.map((company) => (
+        <li key={company}>
+          <button
+            onClick={() => onSelectCompany(company)}
+          >{`#${company}`}</button>
+        </li>
+      ))}
     </ul>
   );
 }
