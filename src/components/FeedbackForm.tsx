@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { MAX_CHARACTERS } from './lib/constants';
 
-export default function FeedbackForm() {
+type FeedbackFormProps = {
+  onAddToList: (text: string) => void;
+};
+
+export default function FeedbackForm({ onAddToList }: FeedbackFormProps) {
   const [inputValue, setInputValue] = useState('');
 
   const charCount = MAX_CHARACTERS - inputValue.length;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Feedback submitted:', inputValue);
+    onAddToList(inputValue);
     setInputValue('');
   };
 
