@@ -1,18 +1,13 @@
-type HashTagListProps = {
-  companyList: string[];
-  onSelectCompany: (tag: string) => void;
-};
+import { useFeedbackItemsContext } from './lib/hooks';
 
-export default function HashTagList({
-  companyList,
-  onSelectCompany,
-}: HashTagListProps) {
+export default function HashTagList() {
+  const { companyList, setSelectedCompany } = useFeedbackItemsContext();
   return (
     <ul className='hashtags'>
       {companyList.map((company) => (
         <li key={company}>
           <button
-            onClick={() => onSelectCompany(company)}
+            onClick={() => setSelectedCompany(company)}
           >{`#${company}`}</button>
         </li>
       ))}
