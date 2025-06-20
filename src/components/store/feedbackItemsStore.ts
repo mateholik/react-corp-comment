@@ -24,7 +24,7 @@ export const useFeedbackItemsStore = create<Store>((set, get) => ({
       .filter((value, index, self) => self.indexOf(value) === index);
   },
   setSelectedCompany: (company: string) => {
-    set({ selectedCompany: company });
+    set({ selectedCompany: company === get().selectedCompany ? '' : company });
   },
   getFilteredFeedbackItems: () => {
     if (!get().selectedCompany) return get().feedbackItems;
